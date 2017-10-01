@@ -134,7 +134,8 @@ public protocol StoryboardInstantiatable: StoryboardInstantiatableType {
    if you registered the type of the instance as a concrete type in the container.
    Then you only need to add conformance to `StoryboardInstantiatable`.
    
-   You may want to override it if you want to add custom logic before/after resolving dependencies
+   You may want to override it if you want to add custom 
+  ic before/after resolving dependencies
    or you want to resolve the instance as implementation of some protocol which it conforms to.
    
    - warning: This method will be called after `init?(coder:)` but before `awakeFromNib` method of `NSObject`.
@@ -190,9 +191,7 @@ extension NSObject {
       
       for (index, container) in DependencyContainer.uiContainers.enumerated() {
         do {
-          log("Trying to resolve \(type(of: self)) with UI container at index \(index)")
           try instantiatable.didInstantiateFromStoryboard(container, tag: tag)
-          log("Resolved \(type(of: self))")
           return
         } catch { }
       }
